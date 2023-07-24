@@ -10,7 +10,12 @@ import { ConfigService, configFactory } from './config.service';
       // envFilePath: ['.env.production', '.env.development', '.env'],
     }),
   ],
-  providers: [configFactory, ConfigService],
+  providers: [
+    {
+      provide: ConfigService,
+      useFactory: configFactory,
+    },
+  ],
   exports: [ConfigService],
 })
 export class ConfigModule {}

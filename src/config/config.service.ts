@@ -16,7 +16,6 @@ export class ConfigService {
   }
 }
 
-export const configFactory: ConfigFactory = {
-  provide: ConfigService,
-  useFactory: () => new ConfigService(),
+export const configFactory: ConfigFactory = () => {
+  return new ConfigService();
 };
