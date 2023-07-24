@@ -11,6 +11,8 @@ import {
 } from '@nestjs/common';
 import { TasksService } from './task.service';
 import { Task } from './entities/task.entity';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Controller('tasks')
 export class TasksController {
@@ -27,16 +29,16 @@ export class TasksController {
   }
 
   @Post()
-  async create(@Body() taskData: Partial<Task>): Promise<Task> {
-    return this.tasksService.create(taskData);
+  async create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+    return this.tasksService.create(createTaskDto);
   }
 
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() taskData: Partial<Task>,
+    @Body() updateTaskDto: UpdateTaskDto,
   ): Promise<Task> {
-    return this.tasksService.update(parseInt(id, 10), taskData);
+    return this.tasksService.update(parseInt(id, 10), updateTaskDto);
   }
 
   @Delete(':id')
