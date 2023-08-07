@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Task } from './task/entities/task.entity';
 import { TaskModule } from './task/task.module';
+import { LoggerModule } from './logger/logger.module';
 // import { ConfigModule } from './config/config.module';
 // import { ConfigService } from './config/config.service';
 
@@ -13,7 +14,7 @@ import { TaskModule } from './task/task.module';
   imports: [
     TaskModule,
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
+      imports: [ConfigModule,LoggerModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
